@@ -1,0 +1,16 @@
+br/com/dts/excelence/range/ExcelSquareRange.class
+br/com/dts/excelence/Excelence.class
+br/com/dts/excelence/range/ExcelLinearRange.class
+br/com/dts/excelence/range/ExcelRange.class
+br/com/dts/excelence/style/ExcelBorder.class
+br/com/dts/excelence/range/ExcelCell.class
+br/com/dts/excelence/style/builder/ExcelBorder.class
+br/com/dts/excelence/style/builder/ExcelFormat.class
+br/com/dts/excelence/style/ExcelStyle.class
+br/com/dts/excelence/style/builder/ExcelFont.class
+br/com/dts/excelence/ExcelSheet.class
+br/com/dts/excelence/ExcelWorkbook.class
+br/com/dts/excelence/range/ExcelHorizontalRange.class
+br/com/dts/excelence/range/ExcelMultiCellRange.class
+br/com/dts/excelence/range/ExcelVerticalRange.class
+br/com/dts/excelence/style/ExcelSide.class
