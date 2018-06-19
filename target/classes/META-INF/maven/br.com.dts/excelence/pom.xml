@@ -8,6 +8,11 @@
 	<name>Excelence</name>
 	<description>The most beautiful and intuitive library to work with Excel files</description>
 
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
 	<dependencies>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
@@ -31,7 +36,7 @@
 			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>

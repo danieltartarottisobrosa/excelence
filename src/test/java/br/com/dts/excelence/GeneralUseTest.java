@@ -11,9 +11,9 @@ import br.com.dts.excelence.range.ExcelHorizontalRange;
 import br.com.dts.excelence.range.ExcelLinearRange;
 import br.com.dts.excelence.range.ExcelRange;
 import br.com.dts.excelence.range.ExcelVerticalRange;
-import br.com.dts.excelence.style.builder.ExcelBorder;
-import br.com.dts.excelence.style.builder.ExcelFont;
-import br.com.dts.excelence.style.builder.ExcelFormat;
+import br.com.dts.excelence.style.ExcelBorder;
+import br.com.dts.excelence.style.ExcelFont;
+import br.com.dts.excelence.style.ExcelFormat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GeneralUseTest {

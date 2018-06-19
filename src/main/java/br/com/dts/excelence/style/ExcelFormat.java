@@ -1,6 +1,4 @@
-package br.com.dts.excelence.style.builder;
-
-import br.com.dts.excelence.style.ExcelStyle;
+package br.com.dts.excelence.style;
 
 public class ExcelFormat implements ExcelStyle {
 
