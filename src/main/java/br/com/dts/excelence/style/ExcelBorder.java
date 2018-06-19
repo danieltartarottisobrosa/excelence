@@ -1,5 +1,10 @@
-package br.com.dts.excelence.style;
+package br.com.dts.excelence.style.builder;
 
+<<<<<<< HEAD
+=======
+import br.com.dts.excelence.style.ExcelStyle;
+
+>>>>>>> branch 'master' of https://github.com/danieltartarottisobrosa/excelence.git
 public class ExcelBorder implements ExcelStyle {
 
 	public ExcelBorder thickness(int i) {
