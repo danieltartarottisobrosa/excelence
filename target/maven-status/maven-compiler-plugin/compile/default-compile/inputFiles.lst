@@ -4,15 +4,14 @@
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/range/ExcelRange.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/range/ExcelHorizontalRange.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/range/ExcelLinearRange.java
-/Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/builder/ExcelFormat.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/ExcelSheet.java
-/Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/builder/ExcelBorder.java
+/Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/ExcelFont.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/ExcelSide.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/ExcelBorder.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/function/SquareForEachFunction.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/ExcelWorkbook.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/function/LinearForEachFunction.java
-/Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/builder/ExcelFont.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/ExcelStyle.java
+/Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/style/ExcelFormat.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/Excelence.java
 /Users/daniel/Documents/project/java-workspace/excelence/src/main/java/br/com/dts/excelence/exception/FileExtensionNotSupportedException.java

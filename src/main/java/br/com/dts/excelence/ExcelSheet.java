@@ -44,8 +44,8 @@ public class ExcelSheet {
 		return new ExcelCell(this, row, col);
 	}
 
-	public ExcelSquareRange range(int beginRow, int endRow, int beginColumn, int endColumn) {
-		return new ExcelSquareRange(this, beginRow, endRow, beginColumn, endColumn);
+	public ExcelSquareRange range(int beginRow, int beginColumn, int endRow, int endColumn) {
+		return new ExcelSquareRange(this, beginRow, beginColumn, endRow, endColumn);
 	}
 	
 	public ExcelHorizontalRange horizontalRange(int row, int beginColumn, int endColumn) {

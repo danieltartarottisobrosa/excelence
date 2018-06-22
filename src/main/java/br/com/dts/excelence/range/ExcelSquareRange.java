@@ -1,12 +1,11 @@
 package br.com.dts.excelence.range;
 
-import java.util.stream.IntStream;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import br.com.dts.excelence.ExcelSheet;
-import br.com.dts.excelence.function.LinearForEachFunction;
-import br.com.dts.excelence.function.SquareForEachFunction;
 import br.com.dts.excelence.style.ExcelStyle;
 
 public class ExcelSquareRange implements ExcelRange {
@@ -17,7 +16,7 @@ public class ExcelSquareRange implements ExcelRange {
 	//  Constructors
 	//
 	
-	public ExcelSquareRange(ExcelSheet sheet, int beginRow, int endRow, int beginColumn, int endColumn) {
+	public ExcelSquareRange(ExcelSheet sheet, int beginRow, int beginColumn, int endRow, int endColumn) {
 		this.sheet = sheet;
 		poiRange = new CellRangeAddress(beginRow, endRow, beginColumn, endColumn);
 	}
@@ -30,19 +29,19 @@ public class ExcelSquareRange implements ExcelRange {
 		return sheet;
 	}
 	
-	public int beginRow() {
+	public final int beginRow() {
 		return poiRange.getFirstRow();
 	}
 	
-	public int endRow() {
+	public final int endRow() {
 		return poiRange.getLastRow();
 	}
 	
-	public int beginCol() {
+	public final int beginCol() {
 		return poiRange.getFirstColumn();
 	}
 	
-	public int endCol() {
+	public final int endCol() {
 		return poiRange.getLastColumn();
 	}
 	
@@ -59,12 +58,13 @@ public class ExcelSquareRange implements ExcelRange {
 		return this;
 	}
 	
-	public ExcelCell cell(int row, int col, Object value) {
+	public ExcelCell cell(int row, int col) {
 		return new ExcelCell(sheet, row, col);
 	}
 	
 	public ExcelSquareRange value(Object value) {
-		return forEach((cell, row, col) -> cell.value(value));
+		stream().forEach(cell -> cell.value(value));
+		return this;
 	}
 
 	public ExcelSquareRange style(ExcelStyle... styles) {
@@ -72,30 +72,41 @@ public class ExcelSquareRange implements ExcelRange {
 		return this;
 	}
 	
-	public ExcelSquareRange forEach(SquareForEachFunction f) {
-		IntStream.rangeClosed(beginRow(), endRow()).forEach(row ->
-				IntStream.rangeClosed(beginCol(), endCol()).forEach(col ->
-						f.apply(new ExcelCell(sheet, row, col), row, col)));
+	public Stream<ExcelCell> stream() {
+		AtomicInteger row = new AtomicInteger(beginRow());
+		AtomicInteger col = new AtomicInteger(beginCol());
 		
-		return this;
+		int qtdRows = endRow() - beginRow() + 1;
+		int qtdCols = endCol() - beginCol() + 1;
+		int qtdCells = qtdRows * qtdCols;
+		
+		return Stream.generate(() -> {
+			if (col.get() > endCol()) {
+				row.incrementAndGet();
+				col.set(0);
+			}
+			return cell(row.get(), col.getAndIncrement());
+		}).limit(qtdCells);
 	}
 	
-	public ExcelSquareRange forEachRow(LinearForEachFunction<ExcelRange> f) {
-		IntStream.rangeClosed(beginRow(), endRow()).forEach(row -> {
-			ExcelRange range = new ExcelHorizontalRange(sheet, row, beginCol(), endCol());
-			f.apply(range, row);
-		});
-		
-		return this;
+	public Stream<ExcelCell> colStream(int col) {
+		AtomicInteger row = new AtomicInteger(beginRow());
+		return Stream.generate(() -> cell(col, row.get()));
 	}
 	
-	public ExcelSquareRange forEachCol(LinearForEachFunction<ExcelRange> f) {
-		IntStream.rangeClosed(beginCol(), endCol()).forEach(col -> {
-			ExcelRange range = new ExcelVerticalRange(sheet, col, beginRow(), endRow());
-			f.apply(range, col);
-		});
-		
-		return this;
+	public Stream<ExcelCell> rowStream(int row) {
+		AtomicInteger col = new AtomicInteger(beginCol());
+		return Stream.generate(() -> cell(row, col.get()));
+	}
+	
+	public Stream<ExcelHorizontalRange> horizontalStream() {
+		AtomicInteger row = new AtomicInteger(beginRow());
+		return Stream.generate(() -> new ExcelHorizontalRange(sheet, row.get(), beginCol(), endCol()));
+	}
+	
+	public Stream<ExcelVerticalRange> verticalStream() {
+		AtomicInteger row = new AtomicInteger(beginRow());
+		return Stream.generate(() -> new ExcelVerticalRange(sheet, row.get(), beginCol(), endCol()));
 	}
 
 }

@@ -1,9 +1,10 @@
 package br.com.dts.excelence.range;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import br.com.dts.excelence.ExcelSheet;
-import br.com.dts.excelence.function.LinearForEachFunction;
 
 public abstract class ExcelLinearRange implements ExcelRange {
 	private ExcelSheet sheet;
@@ -65,12 +66,14 @@ public abstract class ExcelLinearRange implements ExcelRange {
 	}
 	
 	public ExcelLinearRange value(Object value) {
-		return forEach((cell, col) -> cell.value(value));
+		stream().forEach(cell -> cell.value(value));
+		return this;
 	}
 	
-	public ExcelLinearRange forEach(LinearForEachFunction<ExcelCell> f) {
-		IntStream.range(0, length()).forEach(x -> f.apply(cell(x + beginJ()), x));
-		return this;
+	public Stream<ExcelCell> stream() {
+		AtomicInteger j = new AtomicInteger(beginJ);
+		int maxSize = endJ - beginJ + 1;
+		return Stream.generate(() -> cell(j.getAndIncrement())).limit(maxSize);
 	}
 
 	//

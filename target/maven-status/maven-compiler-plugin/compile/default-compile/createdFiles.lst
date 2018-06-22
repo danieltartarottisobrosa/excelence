@@ -5,14 +5,13 @@ br/com/dts/excelence/range/ExcelRange.class
 br/com/dts/excelence/style/ExcelBorder.class
 br/com/dts/excelence/function/SquareForEachFunction.class
 br/com/dts/excelence/range/ExcelCell.class
-br/com/dts/excelence/style/builder/ExcelBorder.class
 br/com/dts/excelence/exception/FileExtensionNotSupportedException.class
-br/com/dts/excelence/style/builder/ExcelFormat.class
 br/com/dts/excelence/style/ExcelStyle.class
-br/com/dts/excelence/style/builder/ExcelFont.class
 br/com/dts/excelence/ExcelSheet.class
 br/com/dts/excelence/ExcelWorkbook.class
+br/com/dts/excelence/style/ExcelFormat.class
 br/com/dts/excelence/range/ExcelHorizontalRange.class
 br/com/dts/excelence/function/LinearForEachFunction.class
 br/com/dts/excelence/range/ExcelVerticalRange.class
 br/com/dts/excelence/style/ExcelSide.class
+br/com/dts/excelence/style/ExcelFont.class

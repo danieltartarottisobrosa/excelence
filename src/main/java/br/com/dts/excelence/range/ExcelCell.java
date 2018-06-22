@@ -1,10 +1,11 @@
 package br.com.dts.excelence.range;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.ss.usermodel.Sheet;
 
 import br.com.dts.excelence.ExcelSheet;
@@ -12,7 +13,6 @@ import br.com.dts.excelence.style.ExcelStyle;
 
 public class ExcelCell implements ExcelRange {
 	private ExcelSheet sheet;
-	private final Row poiRow;
 	private final Cell poiCell;
 	
 	//
@@ -23,8 +23,9 @@ public class ExcelCell implements ExcelRange {
 		this.sheet = sheet;
 		
 		Sheet poiSheet = sheet.poiSheet();
-		poiRow = Optional.ofNullable(poiSheet.getRow(row)).orElse(poiSheet.createRow(row));
-		poiCell = Optional.ofNullable(poiRow.getCell(col)).orElse(poiRow.createCell(col));
+		
+		if (Objects.isNull(poiSheet.getRow(row))) poiSheet.createRow(row);
+		poiCell = poiSheet.getRow(row).getCell(col, MissingCellPolicy.CREATE_NULL_AS_BLANK);
 	}
 	
 	//
@@ -41,10 +42,6 @@ public class ExcelCell implements ExcelRange {
 	
 	public int col() {
 		return poiCell.getColumnIndex();
-	}
-	
-	public Row poiRow() {
-		return poiRow;
 	}
 	
 	public Cell poiCell() {
