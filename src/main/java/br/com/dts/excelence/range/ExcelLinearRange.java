@@ -4,6 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import br.com.dts.excelence.ExcelCell;
 import br.com.dts.excelence.ExcelSheet;
 
 public abstract class ExcelLinearRange implements ExcelRange {

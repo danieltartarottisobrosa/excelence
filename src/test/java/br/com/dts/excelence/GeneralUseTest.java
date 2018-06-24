@@ -2,12 +2,12 @@ package br.com.dts.excelence;
 
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import br.com.dts.excelence.range.ExcelCell;
 import br.com.dts.excelence.range.ExcelHorizontalRange;
 import br.com.dts.excelence.range.ExcelLinearRange;
 import br.com.dts.excelence.range.ExcelRange;
@@ -16,6 +16,7 @@ import br.com.dts.excelence.range.ExcelVerticalRange;
 import br.com.dts.excelence.style.ExcelBorder;
 import br.com.dts.excelence.style.ExcelFont;
 import br.com.dts.excelence.style.ExcelFormat;
+import br.com.dts.excelence.valueparser.ValueParser;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GeneralUseTest {
@@ -35,7 +36,6 @@ public class GeneralUseTest {
 		
 		ExcelLinearRange range1 = sheet.horizontalRange(0, 0, 4);
 		ExcelRange range2 = range1;
-		ExcelRange range3 = cell1;
 		
 		ExcelSquareRange square = sheet.range(0, 0, 9, 9)
 			.style(
@@ -71,8 +71,42 @@ public class GeneralUseTest {
 		Assert.assertEquals("Some value", value);
 	}
 	
+	@Test
+	public void customValueParser() {
+		ExcelWorkbook workbook = Excelence.createWorkbook();
+		workbook.valueParser(ComplexType.class, new ComplexTypeParser());
+		
+		ExcelSheet sheet = workbook.createSheet("Sheet");
+		
+		ExcelCell cell = sheet.cell(3, 3).value(new ComplexType("Daniel"));
+		System.out.println(cell.value(ComplexType.class));
+	}
+	
 	private String getResourcesPath(String resource) {
 		return getClass().getClassLoader().getResource(resource).getPath();
+	}
+	
+	static class ComplexType {
+		private final String name;
+		
+		public ComplexType(String name) {
+			this.name = name;
+		}
+		
+		public String getName() {
+			return name;
+		}
+	}
+	
+	static class ComplexTypeParser implements ValueParser<ComplexType> {
+		@Override
+		public ComplexType readValue(Cell poiCell) {
+			return new ComplexType(poiCell.getStringCellValue());
+		}
+		@Override
+		public void writeValue(Cell poiCell, Object value) {
+			poiCell.setCellValue(((ComplexType) value).getName());
+		}
 	}
 }
 

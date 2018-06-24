@@ -2,7 +2,6 @@ package br.com.dts.excelence;
 
 import org.apache.poi.ss.usermodel.Sheet;
 
-import br.com.dts.excelence.range.ExcelCell;
 import br.com.dts.excelence.range.ExcelHorizontalRange;
 import br.com.dts.excelence.range.ExcelSquareRange;
 import br.com.dts.excelence.range.ExcelVerticalRange;

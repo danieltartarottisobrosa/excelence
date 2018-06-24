@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 
 import org.apache.poi.ss.util.CellRangeAddress;
 
+import br.com.dts.excelence.ExcelCell;
 import br.com.dts.excelence.ExcelSheet;
 import br.com.dts.excelence.style.ExcelStyle;
 

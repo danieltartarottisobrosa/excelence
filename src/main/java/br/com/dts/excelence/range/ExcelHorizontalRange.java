@@ -1,5 +1,6 @@
 package br.com.dts.excelence.range;
 
+import br.com.dts.excelence.ExcelCell;
 import br.com.dts.excelence.ExcelSheet;
 import br.com.dts.excelence.style.ExcelStyle;
 
